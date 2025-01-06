@@ -1,20 +1,60 @@
-import React from "react"
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import React, {useState} from "react"
+import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
-const Task = ({description, createDate}) => {
+const Task = ({changeCheck, editItem, deleteItem, todo}) => {
+	const [editing, setEditing] = useState(false)
+	const [value, setValue] = useState("")
+
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		editItem(todo.id, value)
+		setValue("")
+		setEditing(false)
+	}
+
+	const toggleEditing = () => {
+		setEditing((prev) => !prev)
+		setValue(todo.body)
+	}
+
+	const {body, id, checked, date} = todo
 
 	return (
-		<li className="editing">
+		<li className={checked ? "completed" : editing ? "editing" : null}>
 			<div className="view">
-				<input className="toggle" type="checkbox" />
-				<label>
-					<span className="description">Editing task</span>
-					<span className="created">{formatDistanceToNow(createDate)}</span>
+				<input
+					id={id}
+					className="toggle"
+					type="checkbox"
+					onChange={(event) => changeCheck(id, event.target.checked)}
+					checked={checked}
+				/>
+				<label htmlFor={id}>
+					<span className="description">{body}</span>
+					<span className="created">
+						{`created ${formatDistanceToNow(date, {
+							includeSeconds: true,
+							addSuffix: true,
+						})}`}
+					</span>
 				</label>
-				<button className="icon icon-edit"></button>
-				<button className="icon icon-destroy"></button>
+				<button type="button" onClick={toggleEditing} className="icon icon-edit" />
+				<button
+					type="button"
+					onClick={() => deleteItem(id)}
+					className="icon icon-destroy"
+				/>
 			</div>
-			<input type="text" className="edit" value="Editing task" />
+			{editing && (
+				<form onSubmit={handleSubmit}>
+					<input
+						onChange={(event) => setValue(event.target.value)}
+						type="text"
+						className="edit"
+						value={value}
+					/>
+				</form>
+			)}
 		</li>
 	)
 }
