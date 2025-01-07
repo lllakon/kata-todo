@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react"
+import {useMemo, useState} from "react"
 
 import NewTaskForm from "./components/NewTaskForm/NewTaskForm"
 import TaskList from "./components/TaskList/TaskList"

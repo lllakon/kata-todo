@@ -1,6 +1,7 @@
-import React, {useState} from "react"
+import {useState} from "react"
+import PropTypes from 'prop-types';
 
-const NewTaskForm = ({title, placeholder, addItem}) => {
+const NewTaskForm = ({title = 'Todos', placeholder = 'What needs to be done?', addItem}) => {
 	const [value, setValue] = useState("")
 
 	function handleSubmit(e) {
@@ -28,4 +29,11 @@ const NewTaskForm = ({title, placeholder, addItem}) => {
 		</form>
 	)
 }
+
+NewTaskForm.propTypes = {
+  title: PropTypes.string,
+  placeholder: PropTypes.string,
+  addItem: PropTypes.func.isRequired,
+};
+
 export default NewTaskForm

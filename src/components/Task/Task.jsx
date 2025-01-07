@@ -1,7 +1,8 @@
-import React, {useState} from "react"
+import {useState} from "react"
+import PropTypes from "prop-types"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
-const Task = ({changeCheck, editItem, deleteItem, todo}) => {
+const Task = ({changeCheck, editItem, deleteItem, todo = {}}) => {
 	const [editing, setEditing] = useState(false)
 	const [value, setValue] = useState("")
 
@@ -58,4 +59,17 @@ const Task = ({changeCheck, editItem, deleteItem, todo}) => {
 		</li>
 	)
 }
+
+Task.propTypes = {
+	todo: PropTypes.shape({
+		id: PropTypes.number,
+		body: PropTypes.string,
+		checked: PropTypes.bool,
+		date: PropTypes.instanceOf(Date),
+	}),
+	deleteItem: PropTypes.func.isRequired,
+	changeCheck: PropTypes.func.isRequired,
+	editItem: PropTypes.func.isRequired,
+}
+
 export default Task

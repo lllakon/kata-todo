@@ -1,6 +1,6 @@
-import React from "react"
+import PropTypes from "prop-types"
 
-const TaskFilter = ({filter, changeFilter}) => {
+const TaskFilter = ({filter = "All", changeFilter}) => {
 	return (
 		<ul className="filters">
 			<li>
@@ -33,4 +33,10 @@ const TaskFilter = ({filter, changeFilter}) => {
 		</ul>
 	)
 }
+
+TaskFilter.propTypes = {
+	filter: PropTypes.string,
+	changeFilter: PropTypes.func.isRequired,
+}
+
 export default TaskFilter

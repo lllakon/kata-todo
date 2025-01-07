@@ -1,7 +1,7 @@
-import React from "react"
 import TaskFilter from "../TaskFilter/TaskFilter"
+import PropTypes from 'prop-types';
 
-const Footer = ({lefts, clearCompleted, changeFilter, filter}) => {
+const Footer = ({lefts = 0, clearCompleted, changeFilter, filter = 'All'}) => {
 	return (
 		<footer className="footer">
 			<span className="todo-count">{lefts} items left</span>
@@ -12,4 +12,12 @@ const Footer = ({lefts, clearCompleted, changeFilter, filter}) => {
 		</footer>
 	)
 }
+
+Footer.propTypes = {
+  lefts: PropTypes.number,
+  clearCompleted: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
+  filter: PropTypes.string,
+};
+
 export default Footer
