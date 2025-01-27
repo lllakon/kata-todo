@@ -184,6 +184,7 @@ body {
   display: none;
 }
 
+
 .todo-list li .toggle {
   text-align: center;
   width: 40px;
@@ -219,7 +220,8 @@ body {
   padding: 15px 85px 15px 60px;
 }
 
-.todo-list li label .created {
+.todo-list li label .created,
+.timer {
   font-size: 13px;
   color: gray;
 }

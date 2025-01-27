@@ -14,6 +14,7 @@ function App() {
       body: value,
       checked: false,
       date: new Date(),
+			time: 0,
     };
 
     setTodos((prevTodos) => [...prevTodos, newTodo]);

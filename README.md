@@ -1,1 +1,1 @@
-Vercel: kata-todo-iota.vercel.app
+Vercel: https://kata-todo-iota.vercel.app/
